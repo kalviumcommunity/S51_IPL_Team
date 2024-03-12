@@ -1,5 +1,5 @@
 
-# List Of Football Clubs
+# List Of IPL Teams
 
 This Project aims to rank the teams in the Indian premier league based on various criteria such as Score, record, players reputation and User's Preference.
 
