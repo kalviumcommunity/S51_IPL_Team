@@ -1,0 +1,12 @@
+{
+  "name": "s51_ipl_team",
+  "version": "1.0.0",
+  "description": "This Project aims to rank the teams in the Indian premier league based on various criteria such as Score, record, players reputation and User's Preference.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
