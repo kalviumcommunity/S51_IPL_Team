@@ -20,9 +20,9 @@ The main feature of this project are:
 
 Link : 
 
-## Deployment Link
+## Backend Deployment Link
 
-Link : 
+Link : https://s51-ipl-team.onrender.com/home
 
 ## Front-end Development Link
 
