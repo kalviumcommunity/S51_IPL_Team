@@ -8,26 +8,20 @@ const iplteams = require("../models/iplteam.models")
 const Joi = require('joi');
 require('dotenv').config()
 const schema = Joi.object({
-      serialNumber:Joi.number(),
-      ClubId:Joi.number().required(),
-      ClubName:Joi.string().required(),
-      Ranking:Joi.number().required(),
-      Coach:Joi.string().required(),
-      MatchsPlayed:Joi.number().required(),
-      Won:Joi.number().required(),
-      Losses:Joi.number().required(),
-      Goals:Joi.number().required(),
-      GoalsConceded:Joi.number(),
-      CleanSheet:Joi.number(),
-      Shots:Joi.number(),
-      Shotsontarget:Joi.number(),
-      Yellowcards:Joi.number(),
-      Redcards:Joi.number(),
-      Fouls:Joi.number(),
-      Offsides:Joi.number(),
-      created_by:Joi.string().required()
+      Id:Joi.number().required(),
+      Teams:Joi.string().required(),
+      M:Joi.number().required(),
+      W:Joi.number().required(),
+      L:Joi.number().required(),
+      T:Joi.number().required(),
+      NR:Joi.number().required(),
+      PT:Joi.number().required(),
+      NRR:Joi.number().required(),
+      For:Joi.string().required(),
+      Against:Joi.string().required(),
+      CreatedBy:Joi.string().required()
     });
-    const authenticateToken = (req, res,next) => {
+    const authenticateToken = (req, res, next) => {
         const authHeader = req.headers['authorization'];
         const token = authHeader && authHeader.split(' ')[1]
         if(token==null) return res.sendStatus(401)
