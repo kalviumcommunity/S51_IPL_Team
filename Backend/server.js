@@ -1,9 +1,11 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const cors = require('cors');
 const { startDatabase, isConnected } = require('./db/database');
 const {getRouter, postRouter, putRouter, deleteRouter}=require('./routes/CRUDIPL.routes')
 const app = express()
 app.use(bodyParser.json());
+app.use(cors())
 app.use(express.json())
 app.use('/',getRouter);
 app.use('/', postRouter);
