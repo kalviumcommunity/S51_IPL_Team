@@ -10,8 +10,8 @@ const iplTeamSchema = new mongoose.Schema({
     NR:{type:Number, required:true},
     PT:{type:Number, required:true},
     NRR:{type:Number, required:true},
-    For:{type:Number, required:true},
-    Against:{type:Number, required:true}
+    For:{type:String, required:true},
+    Against:{type:String, required:true}
 },
 {timestamps:true});
 
