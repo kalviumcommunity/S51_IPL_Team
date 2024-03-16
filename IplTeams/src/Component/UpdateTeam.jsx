@@ -14,19 +14,19 @@ function UpdateTeam() {
     const data = location.state;
     console.log(location)
     console.log(data)
-    const [Id,setId]=useState("")
-    const [teamName,setTeamName]=useState("")
-    const [ranking,setRankings]=useState("")
-    const [M,setM]=useState("")
-    const [W,setW]=useState("")
-    const [L,setL]=useState("")
-    const [T,setT]=useState("")
-    const [NR,setNR]=useState("")
-    const [PT,setPT]=useState("")
-    const [NRR,setNRR]=useState("")
-    const [For,setFor]=useState("")
-    const [Against,setAgainst]=useState("")
-    const [OwnedBy,setOwnedBy]=useState("")
+    const [Id,setId]=useState(data.Id)
+    const [teamName,setTeamName]=useState(data.Teams)
+    const [ranking,setRankings]=useState(data.Ranking)
+    const [M,setM]=useState(data.M)
+    const [W,setW]=useState(data.W)
+    const [L,setL]=useState(data.L)
+    const [T,setT]=useState(data.T)
+    const [NR,setNR]=useState(data.NR)
+    const [PT,setPT]=useState(data.PT)
+    const [NRR,setNRR]=useState(data.NRR)
+    const [For,setFor]=useState(data.For)
+    const [Against,setAgainst]=useState(data.Against)
+    const [OwnedBy,setOwnedBy]=useState(data.OwnedBy)
     const token = getCookie('token')
     const submit=(e)=>{
       e.preventDefault();
@@ -100,7 +100,7 @@ function UpdateTeam() {
               <option value="Kiran Kumar Grandhi">Kiran Kumar Grandhi</option>
               <option value="Kalanithi Maran">Kalanithi Maran</option>
             </select></div>
-            <button type="submit">Submit</button>
+            <button type="submit">Update</button>
           </form>
         </div>
       </div>
