@@ -10,6 +10,7 @@ require('dotenv').config()
 const schema = Joi.object({
       Id:Joi.number().required(),
       Teams:Joi.string().required(),
+      Ranking:Joi.number().required(),
       M:Joi.number().required(),
       W:Joi.number().required(),
       L:Joi.number().required(),
@@ -19,7 +20,7 @@ const schema = Joi.object({
       NRR:Joi.number().required(),
       For:Joi.string().required(),
       Against:Joi.string().required(),
-      CreatedBy:Joi.string().required()
+      OwnedBy:Joi.string().required()
     });
     const authenticateToken = (req, res, next) => {
         const authHeader = req.headers['authorization'];
@@ -62,8 +63,8 @@ postRouter.post('/api/addiplteam',async (req, res) => {
 
             try{
                 if (!error) {
-                let{Id,Teams,M,W,L,T,NR,PT,NRR,For,Against} = req.body;
-                const iplteam = await iplteams.create({Id,Teams,M,W,L,T,NR,PT,NRR,For,Against});
+                let{Id,Teams,Ranking,M,W,L,T,NR,PT,NRR,For,Against,OwnedBy} = req.body;
+                const iplteam = await iplteams.create({Id,Teams,Ranking,M,W,L,T,NR,PT,NRR,For,Against,OwnedBy});
                 res.status(201).json(iplteam);}
                 else {
                     return res.status(400).send({
@@ -88,8 +89,8 @@ putRouter.patch('/api/updateiplteam/:id',async (req, res) => {
         if (!error) {
         const {id} = req.params;
         const filter ={"Id":Number(id)}
-        let{Id,Teams,M,W,L,T,NR,PT,NRR,For,Against} = req.body;
-        const iplteam = await iplteams.findOneAndUpdate(filter,{Id,Teams,M,W,L,T,NR,PT,NRR,For,Against});
+        let{Id,Teams,Ranking,M,W,L,T,NR,PT,NRR,For,Against,OwnedBy} = req.body;
+        const iplteam = await iplteams.findOneAndUpdate(filter,{Id,Teams,Ranking,M,W,L,T,NR,PT,NRR,For,Against,OwnedBy});
         res.status(200).json(iplteam);}
         else {
             return res.status(400).send({
