@@ -47,7 +47,7 @@ const filteredData = data.filter((item)=>{
       <div id="add">
       <div id="createdBy">
       <p> Created By :   </p> 
-      <select name="createdBy" id="cCreatedBy" onChange={(e)=>{setFilter(e.target.value)}}>
+      <select name="createdBy" id="CreatedBy" onChange={(e)=>{setFilter(e.target.value)}}>
               <option value="All">All</option>
               <option value="Siddharth Patel">Siddharth Patel</option>
               <option value="N Srinivasan">N Srinivasan</option>
