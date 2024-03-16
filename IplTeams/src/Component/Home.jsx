@@ -1,14 +1,15 @@
 import { useEffect,useState } from "react"
 import {Link} from "react-router-dom"
 import axios from 'axios'
+import WelcomeUser from "./SubComponent/WelcomeUser";
 
 function Home() {
     const [data,setData] = useState([]);
-    // const [filter,setFilter] = useState("All");
+    const [filter,setFilter] = useState("All");
     useEffect(()=>{
         const iplteamdata = async()=>{
         try{
-            const response = await axios.get('http://localhost:3000/api/getalliplteam')
+            const response = await axios.get('https://s51-ipl-team.onrender.com/api/getalliplteam')
             setData(response.data)
             console.log(response.data);
         }catch(err){
@@ -17,6 +18,20 @@ function Home() {
     }
     iplteamdata()
 },[])
+const deleteData = (id) =>{
+  axios.delete(`https://s51-ipl-team.onrender.com/api/deleteiplteam/${id}`)
+ .then((response) =>{ console.log(response.data);
+  window.location.reload();})
+  .catch((error) => console.error(error))
+}
+const filteredData = data.filter((item)=>{
+  if(filter === "All"){
+    return item
+  }
+  else if(item.OwnedBy.includes(filter)){
+    return item
+  }
+})
   return (
     <> <div id='Body'>
     <div id='Navbar'>
@@ -24,22 +39,28 @@ function Home() {
             <Link to='/'><h1>IPL Teams</h1></Link>
         </div>
         <div id='Navbar-right'>
-            {/* <WelcomeUser/> */}
+            <WelcomeUser/>
         </div>
     </div>
-    {/* {(data.length > 1) ? */}
+    {(data.length > 1) ?
     <div id='Body-content'>
       <div id="add">
-      {/* <div id="createdBy">
+      <div id="createdBy">
       <p> Created By :   </p> 
-        <select name="createdBy" id="CreatedBy" onChange={(e)=>{setFilter(e.target.value)}}>
-          <option value="All">All</option>
-          <option value="Anna Connel">Anna Connel</option>
-          <option value="John Houlding">John Houlding</option>
-          <option value="Gus Mears">Gus Mears</option>
-          <option value="Jack Hughes">Jack Hughes</option>
-        </select>
-      </div> */}
+      <select name="createdBy" id="cCreatedBy" onChange={(e)=>{setFilter(e.target.value)}}>
+              <option value="All">All</option>
+              <option value="Siddharth Patel">Siddharth Patel</option>
+              <option value="N Srinivasan">N Srinivasan</option>
+              <option value="Sanjiv Goenka">Sanjiv Goenka</option>
+              <option value="Nita Ambani">Nita Ambani</option>
+              <option value="Manoj Badale">Manoj Badale</option>
+              <option value="Prathmesh Mishra">Prathmesh Mishra</option>
+              <option value="Shah Rukh Khan">Shah Rukh Khan</option>
+              <option value="Mohit Burman">Mohit Burman</option>
+              <option value="Kiran Kumar Grandhi">Kiran Kumar Grandhi</option>
+              <option value="Kalanithi Maran">Kalanithi Maran</option>
+            </select>
+      </div>
       
       
         <Link to='/add'><button>Add</button></Link>
@@ -59,18 +80,18 @@ function Home() {
           <th>NRR</th>
           <th>For</th>
           <th>Against</th>
-          {/* <th>Update </th>
+          <th>Update </th>
           <th>Delete </th>
-          <th>Created By</th> */}
+          <th>Owned By</th>
           </tr>
         </thead>
         <tbody>
-        {data.map((item,index)=>{
+        {filteredData.map((item,index)=>{
           return (
             <tr key={index}>
               <td>{item.Id}</td>
-              <td>{item.TEAMS}</td>
-              <td>{item.Id}</td>
+              <td>{item.Teams}</td>
+              <td>{item.Ranking}</td>
               <td>{item.M}</td>
               <td>{item.W}</td>
               <td>{item.L}</td>
@@ -80,27 +101,22 @@ function Home() {
               <td>{item.NRR}</td>
               <td>{item.For}</td>
               <td>{item.Against}</td>
-              {/* <td>{item.GoalsConceded}</td>
-              <td>{item.CleanSheets}</td>
-              <td>{item.Shots}</td>
-              <td>{item.Shotsontarget}</td> */}
-{/*               
               <td><Link to={`/update/${item.ClubId}`} state={item}><button id="update">Update</button></Link></td>
               <td><button onClick={()=>deleteData(item.ClubId)} id="delete">Delete</button></td>
-              <td>{item.created_by}</td> */}
+              <td>{item.OwnedBy}</td>
             </tr>
           )
         })}
         </tbody>
     </table>
     </div>
-    {/* :<div id='Body-content'>
+    :<div id='Body-content'>
       <div id="login">
       <h1>Please Login To Continue</h1>
       <Link to="/login"><button id='Navbar-button' style={{backgroundColor : 'rgb(34, 255, 0)',height:'10vh',width:'19vw',fontSize:'30px',textAlign:'center',marginBottom:'20px'}}>Login</button></Link>
       </div>
     </div>
-} */}
+}
   
 </div>
     </>

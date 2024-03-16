@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const iplTeamSchema = new mongoose.Schema({
     Id:{type:Number, required:true},
     Teams:{type:String, required:true},
+    Ranking:{type:String,required:true},
     M:{type:Number, required:true},
     W:{type:Number, required:true},
     L:{type:Number, required:true},
@@ -11,7 +12,8 @@ const iplTeamSchema = new mongoose.Schema({
     PT:{type:Number, required:true},
     NRR:{type:Number, required:true},
     For:{type:String, required:true},
-    Against:{type:String, required:true}
+    Against:{type:String, required:true},
+    OwnedBy:{type:String, required:true}
 },
 {timestamps:true});
 

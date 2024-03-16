@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors');
+const {login,signup} = require('./routes/AuthServer')
 const { startDatabase, isConnected } = require('./db/database');
 const {getRouter, postRouter, putRouter, deleteRouter}=require('./routes/CRUDIPL.routes')
 const app = express()
@@ -11,6 +12,9 @@ app.use('/',getRouter);
 app.use('/', postRouter);
 app.use('/', putRouter);
 app.use('/', deleteRouter);
+app.use('/',login)
+app.use('/',signup)
+
 app.get('/', (req, res) => {
   res.send({message:'Welcome to the amazing world of cricket'})
 })
