@@ -41,7 +41,7 @@ table{
   background-color: aqua;
 }
 #form{
-  height: 84vh;
+  height: 66vh;
   width: 48vw;
   display: flex;
   flex-direction: column;
@@ -71,9 +71,9 @@ input{
   color: #000;
 }
 #cCreatedBy{
-  width: 10vw;
-  color: #fffb00;
-  background-color: #180f0fa5;
+  width: 16vw;
+  color: #000;
+  background-color: #fff;
 }
 #update{
   background-color: rgb(18, 74, 186);
