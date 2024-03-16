@@ -4,12 +4,18 @@ import axios from 'axios'
 import WelcomeUser from "./SubComponent/WelcomeUser";
 
 function Home() {
+  function getCookie(name) {
+    let cookieArray = document.cookie.split('; ');
+    let cookie = cookieArray.find((row) => row.startsWith(name + '='));
+    return cookie ? cookie.split('=')[1] : null;
+  }
+  const token = getCookie('token')
     const [data,setData] = useState([]);
     const [filter,setFilter] = useState("All");
     useEffect(()=>{
         const iplteamdata = async()=>{
         try{
-            const response = await axios.get('https://s51-ipl-team.onrender.com/api/getalliplteam')
+            const response = await axios.get('https://s51-ipl-team.onrender.com/api/getalliplteam',{headers:{authorization:`Bearer ${token}`}})
             setData(response.data)
             console.log(response.data);
         }catch(err){
@@ -18,8 +24,9 @@ function Home() {
     }
     iplteamdata()
 },[])
+
 const deleteData = (id) =>{
-  axios.delete(`https://s51-ipl-team.onrender.com/api/deleteiplteam/${id}`)
+  axios.delete(`https://s51-ipl-team.onrender.com/api/deleteiplteam/${id}`,{headers:{authorization:`Bearer ${token}`}})
  .then((response) =>{ console.log(response.data);
   window.location.reload();})
   .catch((error) => console.error(error))
