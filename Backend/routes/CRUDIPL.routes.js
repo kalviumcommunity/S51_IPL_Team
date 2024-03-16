@@ -31,7 +31,7 @@ const schema = Joi.object({
           next()
         })
       }
-getRouter.get('/api/getalliplteam',async (req, res) => {
+getRouter.get('/api/getalliplteam',authenticateToken,async (req, res) => {
     try{
         const iplteam = await iplteams.find();
         res.status(200).json(iplteam);
@@ -43,7 +43,7 @@ getRouter.get('/api/getalliplteam',async (req, res) => {
     }
 })
 
-getRouter.get('/api/getiplteam/:id',async (req, res) => {
+getRouter.get('/api/getiplteam/:id',authenticateToken,async (req, res) => {
     try{
         const iplteam = await iplteams.findone({Id:req.params.id});
         res.status(200).json(iplteam);
@@ -55,7 +55,7 @@ getRouter.get('/api/getiplteam/:id',async (req, res) => {
     }
 })
 
-postRouter.post('/api/addiplteam',async (req, res) => {
+postRouter.post('/api/addiplteam',authenticateToken,async (req, res) => {
 
           
             const { error, value } = schema.validate(req.body, { abortEarly: false });
@@ -82,7 +82,7 @@ postRouter.post('/api/addiplteam',async (req, res) => {
         
 })
 
-putRouter.patch('/api/updateiplteam/:id',async (req, res) => {
+putRouter.patch('/api/updateiplteam/:id',authenticateToken,async (req, res) => {
     const { error, value } = schema.validate(req.body, { abortEarly: false });
           
     try {
@@ -107,7 +107,7 @@ putRouter.patch('/api/updateiplteam/:id',async (req, res) => {
 
 })
 
-deleteRouter.delete('/api/deleteiplteam/:id',async (req, res) => {
+deleteRouter.delete('/api/deleteiplteam/:id',authenticateToken,async (req, res) => {
     try {
         const {id} = req.params;
         const filter ={"Id":Number(id)}
